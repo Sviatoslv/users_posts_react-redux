@@ -26,7 +26,7 @@ const EditPost = ({ currentUserId, setPosts, post }) => {
     event.preventDefault();
 
     if (newPostBody === post.body && newPostTitle === post.title) {
-      setError(!error)
+      setError(true)
     } else if (newPostBody && newPostTitle) {
       const url = 'https://jsonplaceholder.typicode.com/posts/1';
 
@@ -90,7 +90,12 @@ const EditPost = ({ currentUserId, setPosts, post }) => {
             </label>
           </div>
 
-          <button type="submit" className="button button--form">
+          <button
+            type="submit"
+            className={newPostBody === post.body && newPostTitle === post.title
+              ? "button button--form button--disabled"
+              : "button button--form"
+          }>
             Save Changes
           </button>
         </>
