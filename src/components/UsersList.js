@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import './UsersList.css';
-import * as todoActions from './store';
+import * as todoActions from '../store';
 
 const UsersList = ({ users, setcurrentUserId }) => {
   const handleUser = (userId) => {
@@ -38,12 +39,15 @@ const UsersList = ({ users, setcurrentUserId }) => {
 
 const mapStateToProps = state => ({
   users: state.users,
-  currentUserId: state.currentUserId,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setUsers: todos => dispatch(todoActions.setUsers(todos)),
   setcurrentUserId: value => dispatch(todoActions.setcurrentUserId(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersList);
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setcurrentUserId: PropTypes.func.isRequired,
+}

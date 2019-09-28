@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Comments.css';
 
 const Comments = ({ comments }) => (
@@ -34,3 +35,7 @@ const Comments = ({ comments }) => (
 )
 
 export default Comments;
+
+Comments.propTypes = {
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+}

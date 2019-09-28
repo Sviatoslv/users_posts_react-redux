@@ -40,35 +40,7 @@ const reducer = (state, action) => {
     case SET_CURRENT_USER:
       return { ...state, currentUserId: action.userId };
 
-
-    case ADD_TODO:
-      return {
-        ...state,
-        todos: [...state.todos, {
-          id: Date.now(),
-          title: action.title,
-          completed: false,
-        }],
-      };
-
-    case TOGGLE_TODO:
-      return {
-        ...state,
-        todos: state.todos.map(todo => (
-          (action.todoId !== todo.id)
-            ? todo
-            : { ...todo, completed: !todo.completed }
-        )),
-      };
-
-    case DELETE_TODO:
-      return {
-        ...state,
-        todos: state.todos.filter(todo => todo.id !== action.todoId),
-      };
-
-    default:
-      return state;
+    default: return state;
   }
 };
 

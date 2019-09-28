@@ -4,31 +4,3 @@ body {
   background-color: #f9f9ff;
 }
 
-.visually-hidden {
-	position: absolute !important;
-	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-	clip: rect(1px, 1px, 1px, 1px);
-	padding:0 !important;
-	border:0 !important;
-	height: 1px !important; 
-	width: 1px !important; 
-	overflow: hidden;
-}
-
-.additional-text {
-  text-decoration: none;
-
-  margin: 10px 0;
-  margin-right: 5px;
-  color: #929292;
-  font-size: 12px;
-}
-
-.additional-text--mark {
-  color: #000;
-}
-
-.additional-text--link:hover {
-  color: #3232e9;
-}
-

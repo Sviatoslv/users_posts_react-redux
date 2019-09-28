@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { getPosts } from './api';
+import { getPosts } from '../api';
+import PropTypes from 'prop-types';
 
-const AddNewPost = ({ currentUserId, setPosts }) => {
-  const [newPostTitle, setNewPostTitle] = useState('');
-  const [newPostBody, setNewPostBody] = useState('');
+const EditPost = ({ currentUserId, setPosts, post }) => {
+  const [newPostTitle, setNewPostTitle] = useState(post.title);
+  const [newPostBody, setNewPostBody] = useState(post.body);
   const [submited, setSubmited] = useState(false);
 
   const handleNewTitleChange = (event) => {
@@ -22,7 +23,7 @@ const AddNewPost = ({ currentUserId, setPosts }) => {
     event.preventDefault();
 
     if (newPostBody && newPostTitle) {
-      const url = 'https://jsonplaceholder.typicode.com/posts';
+      const url = 'https://jsonplaceholder.typicode.com/posts/1';
 
       const data = {
         body: newPostBody,
@@ -32,7 +33,7 @@ const AddNewPost = ({ currentUserId, setPosts }) => {
       };
 
       fetch(url, {
-        method: 'POST',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
@@ -40,9 +41,7 @@ const AddNewPost = ({ currentUserId, setPosts }) => {
         .then((response) => console.log('Success:', response))
         .then(() => getPosts(currentUserId).then(setPosts))
         .catch((error) => console.error('Error:', error));
-  
-      setNewPostTitle('');
-      setNewPostBody('');
+
       setSubmited(true);
     }
   }
@@ -51,7 +50,7 @@ const AddNewPost = ({ currentUserId, setPosts }) => {
     <form onSubmit={handleSubmit}>
       {!submited &&
         <>
-          <h2>Add New Post</h2>
+          <h2>Edit Post</h2>
           
           <div className="form__container">
             <label className="form__label">
@@ -83,7 +82,7 @@ const AddNewPost = ({ currentUserId, setPosts }) => {
           </div>
 
           <button type="submit" className="button button--form">
-            Add New Post
+            Save Changes
           </button>
         </>
       }
@@ -91,18 +90,28 @@ const AddNewPost = ({ currentUserId, setPosts }) => {
       {submited &&
         <div>
           <h2>Success!</h2>
-          <p>Your Post was successfully created!</p>
+          <p>Your Post was successfully changed!</p>
 
           <button
             type="submit"
             className="button button--form"
             onClick={handleSubmited}
           >
-            Add another one
+            One more change!
           </button>
         </div>
       }
     </form>
 )}
 
-export default AddNewPost;
+export default EditPost;
+
+EditPost.propTypes = {
+  setPosts: PropTypes.func.isRequired,
+  currentUserId: PropTypes.number.isRequired,
+  post: PropTypes.object.isRequired,
+}
+
+EditPost.defaultProps = {
+  post: {}
+};

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import './PostPage.css';
-import { getPosts, getComments } from './api';
-import * as todoActions from './store';
+import { getPosts, getComments } from '../api';
+import * as todoActions from '../store';
 
 import Modal from './Modal';
 import Comments from './Comments';
@@ -24,7 +25,7 @@ const PostPage = ({
 
     getComments(match.params.postId)
       .then(setComments);
-  }, [setComments]);
+  }, [currentUserId, setPosts, match.params.postId, setComments]);
 
   return (
     <div className="PostPage">
@@ -78,8 +79,6 @@ const PostPage = ({
           post={posts.find(post => post.id === +match.params.postId)}
           currentUserId={currentUserId}
           setPosts={setPosts}
-          isOpen={isDeleteOpen}
-          setIsOpen={setIsDeleteOpen}
         />
       </Modal>
     </div>
@@ -95,9 +94,16 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setPosts: posts => dispatch(todoActions.setPosts(posts)),
   setComments: comments => dispatch(todoActions.setComments(comments)),
-  addTodo: value => dispatch(todoActions.addTodo(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostPage);
 
-
+PostPage.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setPosts: PropTypes.func.isRequired,
+  setComments: PropTypes.func.isRequired,
+  currentUserId: PropTypes.number.isRequired,
+  match: PropTypes.object.isRequired,
+}

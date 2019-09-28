@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import './UserPostsList.css';
-import { getPosts } from './api';
-import * as todoActions from './store';
+import { getPosts } from '../api';
+import * as todoActions from '../store';
 
 import Modal from './Modal';
 import AddNewPost from './AddNewPost';
@@ -15,7 +16,7 @@ const UserPostsList = ({ currentUserId, setPosts, posts, users }) => {
   useEffect(() => {
     getPosts(currentUserId)
       .then(setPosts);
-  }, [setPosts]);
+  }, [setPosts, currentUserId]);
 
   return (
     <div className="UserPostsList">
@@ -78,3 +79,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPostsList);
+
+UserPostsList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setPosts: PropTypes.func.isRequired,
+  currentUserId: PropTypes.number.isRequired,
+}

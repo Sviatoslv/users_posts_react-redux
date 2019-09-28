@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import { getPosts } from './api';
+import { getPosts } from '../api';
 
-const DeletePost = ({ currentUserId, setPosts, post, isOpen, setIsOpen }) => {
+const DeletePost = ({ currentUserId, setPosts, post }) => {
   const [submited, setSubmited] = useState(false);
 
   const handleSubmit = (event) => {
@@ -58,3 +59,13 @@ const DeletePost = ({ currentUserId, setPosts, post, isOpen, setIsOpen }) => {
 )}
 
 export default DeletePost;
+
+DeletePost.propTypes = {
+  setPosts: PropTypes.func.isRequired,
+  currentUserId: PropTypes.number.isRequired,
+  post: PropTypes.object.isRequired,
+}
+
+DeletePost.defaultProps = {
+  post: {}
+};
