@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter , Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -21,7 +21,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
+        <HashRouter>
           <h1>Post Collection</h1>
 
           <Switch>
@@ -33,7 +33,7 @@ class App extends React.Component {
               <PostPage match={match} />
             )}/>
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     );
   }
