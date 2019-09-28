@@ -1,0 +1,41 @@
+.Comments {
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: #f9f9ff;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.Comments__title-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Comments__list {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.Comments__item {
+  padding: 15px;
+  margin-bottom: 10px;
+
+  background-color: #fff;
+  border-radius: 5px;
+  border-bottom: 2px solid #d8d8d8;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+
+  transition: all 0.7s;
+}
+
+.Comments__comments-item::first-letter {
+  text-transform: uppercase;
+}
+
+.Comments__comment-contacts {
+  display: flex;
+  flex-wrap: wrap;
+}

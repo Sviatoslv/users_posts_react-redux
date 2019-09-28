@@ -1,0 +1,33 @@
+.PostPage__post {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 15px;
+  margin-bottom: 20px;
+
+  background-color: #fff;
+  border-radius: 5px;
+  border-bottom: 3px solid #ec4175;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  transition: all 0.7s;
+}
+
+.PostPage__post-title {
+  margin: 10px 0 5px;
+}
+
+.PostPage__post-title::first-letter,
+.PostPage__post-body::first-letter {
+  text-transform: uppercase;
+}
+
+.PostPage__button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.PostPage__button-container--modifier {
+  min-width: 130px;
+}

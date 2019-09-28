@@ -1,0 +1,24 @@
+.form__container {
+  margin-bottom: 30px;
+}
+
+.form__label {
+  text-align: left;
+}
+
+.form__label-text {
+  margin: 14px 0 4px;
+  font-size: 14px;
+  color: #414141;
+}
+
+.form__input {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  min-width: 260px;
+  min-height: 46px;
+
+  border: none;
+  background-color: #f1f1ef;
+  border-radius: 23px;
+}

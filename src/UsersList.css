@@ -1,0 +1,42 @@
+.UsersList__list {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  align-content: stretch;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.UsersList__list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 15px;
+
+  background-color: #fff;
+  border-radius: 5px;
+  border-bottom: 3px solid #ec4175;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  transition: all 0.7s;
+}
+
+.UsersList__list-item:hover {
+  box-shadow: 0 0 14px rgba(29, 13, 87, 0.2);
+}
+
+.UsersList__header {
+  margin: 7px 0 4px;
+}
+
+.UsersList__contacts-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  list-style: none;
+  padding: 0;
+  margin-bottom: 6px;
+  transition: all 0.7s;
+}
