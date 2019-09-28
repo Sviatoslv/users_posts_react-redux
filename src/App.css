@@ -32,3 +32,8 @@
 .additional-text--link:hover {
   color: #3232e9;
 }
+
+.warning {
+  font-size: 14px;
+  color: #af2d2d;
+}

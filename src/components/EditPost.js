@@ -6,13 +6,16 @@ const EditPost = ({ currentUserId, setPosts, post }) => {
   const [newPostTitle, setNewPostTitle] = useState(post.title);
   const [newPostBody, setNewPostBody] = useState(post.body);
   const [submited, setSubmited] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleNewTitleChange = (event) => {
-    setNewPostTitle(event.target.value);
+      setError(false)
+      setNewPostTitle(event.target.value);
   };
 
   const handleNewPostBodyChange = (event) => {
-    setNewPostBody(event.target.value);
+      setError(false)
+      setNewPostBody(event.target.value);
   };
 
   const handleSubmited = () => {
@@ -22,7 +25,9 @@ const EditPost = ({ currentUserId, setPosts, post }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (newPostBody && newPostTitle) {
+    if (newPostBody === post.body && newPostTitle === post.title) {
+      setError(!error)
+    } else if (newPostBody && newPostTitle) {
       const url = 'https://jsonplaceholder.typicode.com/posts/1';
 
       const data = {
@@ -41,6 +46,9 @@ const EditPost = ({ currentUserId, setPosts, post }) => {
         .then((response) => console.log('Success:', response))
         .then(() => getPosts(currentUserId).then(setPosts))
         .catch((error) => console.error('Error:', error));
+      
+      setNewPostTitle(post.title);
+      setNewPostBody(post.body);
 
       setSubmited(true);
     }
@@ -51,6 +59,7 @@ const EditPost = ({ currentUserId, setPosts, post }) => {
       {!submited &&
         <>
           <h2>Edit Post</h2>
+          {error && <p className="warning">Nothing has changed yet!</p>}
           
           <div className="form__container">
             <label className="form__label">
