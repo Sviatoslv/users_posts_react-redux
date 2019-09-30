@@ -14,7 +14,7 @@ const UsersList = ({ users, setcurrentUserId }) => {
   return (
     <div className="UsersList">
       <h2>Page "Users"</h2>
-      <p>(users quantyty: {users.length})</p>
+      <p>(users quantity: {users.length})</p>
 
       <ul className="UsersList__list">
         {users.map(user =>
